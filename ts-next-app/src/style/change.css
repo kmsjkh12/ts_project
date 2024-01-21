@@ -1,0 +1,29 @@
+.change_wrapper {
+    width: 500px;
+    height: 100px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.change {
+    padding: 5px 0px 0px 20px;
+    display: flex;
+}
+
+.change img {
+    width: 80px;
+    height: 80px;
+}
+
+.change_header_title {
+    margin: 30px 0px 0px 20px;
+}
+
+.change_id {
+    float: right;
+    color: dodgerblue;
+    font-size: 15px;
+    padding: 40px 30px 30px 30px;
+}

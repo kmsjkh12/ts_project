@@ -1,0 +1,77 @@
+.header {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Lobster', sans-serif;
+}
+
+.logo {
+    width: 33%;
+}
+
+.title {
+    padding: 15px 0px 0px 50px;
+    letter-spacing: 1.5px;
+}
+
+.search {
+    width: 20%;
+    display: table;
+    table-layout: fixed;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #dadada;
+    border-radius: 5px;
+    height: 40px;
+    border: 1px solid #dadada;
+    text-align: left;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.fas {
+    display: table-cell;
+    width: 35px;
+}
+
+.search_input {
+    display: table-cell;
+    padding-right: 30px;
+    position: relative;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: -.5px;
+    color: #222;
+    box-sizing: border-box;
+    z-index: 4;
+
+}
+
+.shortcut {
+    width: 400px;
+    padding: 15px;
+}
+
+.iconbox {
+    margin-left: 100px;
+    width: 100%;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+}
+
+input {
+    border-radius: 0;
+    border: none;
+    background: 0 0;
+    outline: 0;
+    text-decoration: none;
+}
