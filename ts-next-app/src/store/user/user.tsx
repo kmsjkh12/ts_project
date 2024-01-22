@@ -58,7 +58,7 @@ export const getFeed = (data : any)=>{
     return response.data; // Ensure data is returned
   })    .catch(error => {
       console.error("Error in loginUser:", error);
-      return error;
+      throw error;
     });
 
 }

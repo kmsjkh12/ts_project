@@ -1,15 +1,16 @@
 "use client"
+import { useState } from "react";
 
 import Image from "../../node_modules/next/image";
 import '../style/content.css'
 import { User } from "@/interface/Instagram"
-
 import { Comment } from "@/interface/Instagram";
-import { useState } from "react";
+
 import { userStore } from "@/store/user/userStore";
 
 import useFeedQuery from "@/store/user/FeedApi";
 
+import {useRouter} from 'next/navigation'
 interface ContentPropsType {
   user : User,
   setUserInfo : React.Dispatch<React.SetStateAction<User>>
@@ -17,7 +18,7 @@ interface ContentPropsType {
 
 const Content =({ user }:  any  ) =>{
   const [comment,setComment] = useState<string > ("");
-  
+  const router =useRouter();
   const userInfo = userStore((state)=>state.userInfo)
   const feed = userStore((state)=>state.feed)
 
@@ -58,7 +59,19 @@ const deleteComment = (contentId: number, commentId: number) => {
     }));
   };
 
+  if( isError){
+    router.push("/login")
+  }
 
+  
+  if(isLoading){
+    console.log("hello" + isLoading)
+    return(
+      <div>loading...</div>
+    )
+  }
+  if(isSuccess){
+    console.log(data)
     return(
         <div className="content-wrapper">
 {
@@ -154,6 +167,7 @@ const deleteComment = (contentId: number, commentId: number) => {
   ))}
         </div>  
     )
+                        }
 }
 export default Content;
 /*

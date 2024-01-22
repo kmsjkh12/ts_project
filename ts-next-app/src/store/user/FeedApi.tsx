@@ -18,7 +18,7 @@ const useFeedQuery = (user_id : any)=>{
                     addFeed(data);
                 },
                 onError:(error)=>{
-                    return error;
+                    console.log(error)
                 }
             }
         )
