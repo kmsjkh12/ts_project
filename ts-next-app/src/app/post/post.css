@@ -1,0 +1,147 @@
+.Post {
+    flex-direction: column;
+    padding-bottom: 4800px;
+    padding-top: 0px;
+    flex-shrink: 0;
+    margin: 1px;
+    padding: 0;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    align-items: stretch;
+    border: 0 solid #000;
+}
+
+.Posting {
+    border-radius: 3px;
+    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+    background-color: rgba(var(--d87, 255, 255, 255), 1);
+    margin-left: -1px;
+    margin-right: -1px;
+    align-items: stretch;
+    margin-bottom: 60px;
+}
+
+.StoryPic {
+    position: relative;
+    display: flex;
+    height: 500px;
+}
+
+.Img {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    background-image: url("${props.img}");
+}
+
+.Profilename {
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.Mainbox1 {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 4px;
+    display: flex;
+}
+
+.Fav2 {
+    margin-right: -10px;
+    margin-left: auto;
+}
+
+.Favbox {
+    padding: 8px;
+    display: flex;
+    margin: 0;
+    position: relative;
+    align-items: center;
+    justify-content: cover;
+}
+
+.Mainbox2 {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.Mainbox3 {
+    margin: 0 0 auto;
+    padding: 0 16px;
+}
+
+.Mainbox4 {
+    margin: 0px 0px 6px 0px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.Mainbox5 {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 4px;
+    border-top: 1px solid rgba(var(--ce3, 239, 239, 239), 1);
+    font-size: 14px;
+    line-height: 18px;
+    min-height: 56px;
+    display: flex;
+}
+
+.Commentname {
+    font-weight: 600;
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+.Comment {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0px auto;
+    margin-bottom: 2px;
+    display: flex;
+}
+
+.Option {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.Postdate {
+    letter-spacing: 0.2px;
+    line-height: 18px;
+    font-size: 10px;
+    color: rgba(var(--f52, 142, 142, 142), 1);
+    margin: 0px auto;
+}
+
+.Likebox {
+    padding: 8px;
+    display: flex;
+    margin: 0;
+    position: relative;
+    align-items: center;
+    justify-content: cover;
+    animation-duration: 0.45s;
+    animation-timing-function: ease-in-out;
+    ${active && 'animation-name: fadeIn;'}
+}
+
+.Double {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    height: 128px;
+    width: 128px;
+    animation-duration: 1s;
+    margin: auto;
+    opacity: 0;
+    animation-timing-function: ease-in-out;
+    background-image: url("${Doubleheart}");
+    z-index: 99;
+    ${actives && 'animation-name: DoublefadeIn;'}
+}

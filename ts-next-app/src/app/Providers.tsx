@@ -1,37 +1,30 @@
 "use client";
 import React from "react";
-import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "./globals.css";
-import { Cookies } from "react-cookie";
-import { useQuery } from "react-query";
-import { useEffect } from "react";
-import { LoginProps } from "@/interface/Instagram";
-import { AxiosError } from "axios";
-import axios from "axios";
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 function Providers({ children } :any) {
 
-  const cookies = new  Cookies();
-  const [client] = React.useState(
+  const [queryClient] = React.useState(
     new QueryClient({
       defaultOptions: {
         // react-query 전역 설정
-        queries: {
-          retry: 0,
-          useErrorBoundary: true,
-        },
-        mutations: {
-          useErrorBoundary: true,
-        },
+       queries:{
+        retry: 1
+
+       }
       },
     })
   );
-
-
+ queryClient.invalidateQueries(
+            {
+                queryKey:["feed",2]
+            }    
+            )
+console.log(queryClient)
 
   return (
-    <QueryClientProvider client={client}>
+    <QueryClientProvider client={queryClient}>
       {children}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

@@ -6,13 +6,7 @@ import { userStore } from "@/store/user/userStore";
 import Image from "../../node_modules/next/image";
 import "../style/story.css"
 import {useRouter} from 'next/navigation'
-const Story = () =>{
-  const router =useRouter();
-
-  const userInfo = userStore((state)=>state.userInfo)
-  const story= userStore((state)=>state.story)
-  const {data, isSuccess, isLoading,isError} = useStoryQuery(userInfo?.userid);
-
+const Story = ({user} : any, {isLoading} : boolean) =>{
     if(isLoading){
       return (
         <div>hello</div>
@@ -20,7 +14,7 @@ const Story = () =>{
   }
     return(
         <div className="story-wrapper">
-          {story?.map((story, id)=>
+          {user?.followerid?.map((story, id)=>
             ( 
               <div className="story" key={id}>
               <Image className="profile_image" alt="" src="/icons/추달.png" width={200} height={200} />

@@ -1,28 +1,15 @@
 "use client"
 import { useState } from "react";
-
 import Image from "../../node_modules/next/image";
 import '../style/content.css'
-import { User } from "@/interface/Instagram"
-import { Comment } from "@/interface/Instagram";
-
-import { userStore } from "@/store/user/userStore";
-
-import useFeedQuery from "@/store/user/FeedApi";
-
+import { UserData } from "@/interface/Instagram";
 import {useRouter} from 'next/navigation'
-interface ContentPropsType {
-  user : User,
-  setUserInfo : React.Dispatch<React.SetStateAction<User>>
-}
 
-const Content =({ user }:  any  ) =>{
+
+const Content =({ user }:  UserData  , {isLoading} : boolean) =>{
   const [comment,setComment] = useState<string > ("");
   const router =useRouter();
-  const userInfo = userStore((state)=>state.userInfo)
-  const feed = userStore((state)=>state.feed)
 
-  const {data, isSuccess, isLoading,isError} = useFeedQuery(userInfo?.userid)
  
   const onChange = (e:React.ChangeEvent<HTMLInputElement >)=>{
     setComment(e.target.value)
@@ -31,51 +18,23 @@ const Content =({ user }:  any  ) =>{
 
 
   const onClickAdd =()=>{
-    const newComment :Comment= { comment_id: 2,content_id : 1,comment_content:comment, like:null, user :user,};
-    setUserInfo((user)=>
-      ({...user,
-        contents:
-        user.contents?.map((content)=>
-          content.content_id === newComment.content_id?
-          { ...content, comment: [...(content.comment || []), newComment] }
-          :content
-        )
-      })
-    )
-    setComment("")
+  
   }
-const deleteComment = (contentId: number, commentId: number) => {
-
-    setUserInfo((prevUserInfo) => ({
-      ...prevUserInfo,
-      contents: prevUserInfo.contents?.map((content) =>
-        content.content_id === contentId
-          ? {
-              ...content,
-              comment: content.comment?.filter((comment) => comment.comment_id !== commentId),
-            }
-          : content
-      ),
-    }));
-  };
-
-  if( isError){
-    router.push("/login")
-  }
+  const deleteComment = () => {
 
   
+  };
+
   if(isLoading){
-    console.log("hello" + isLoading)
     return(
       <div>loading...</div>
     )
   }
-  if(isSuccess){
-    console.log(data)
+  if(user){
     return(
         <div className="content-wrapper">
 {
-  feed?.map((c,id)=>
+  user?.map((c,id)=>
   (
     <div className="content" key={id}>
       <div className="content_header">

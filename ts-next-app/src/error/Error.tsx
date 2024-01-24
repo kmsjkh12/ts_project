@@ -18,9 +18,7 @@ export default function Error({ error, reset }) {
     <div>
       <h2>에러 알림</h2>
       <Link  href="/login">
-      <button 
-       
-      >
+      <button>
         다시 시도하기
       </button>
       </Link>

@@ -1,27 +1,23 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getStory } from "./user";
 import { userStore } from "./userStore";
 
-const useStoryQuery = (user_id : any)=>{
+const useStoryQuery = ( )=>{
 
     const addStory= userStore((state)=>state.addStory)
+    const userInfo = userStore((state)=>state.userInfo)
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const {data, isSuccess,isLoading, isError} = useQuery(
-            ["story",user_id],
-            ()=>
-            getStory(user_id)
-            ,
-            {
-                onSuccess:(data)=>{
-                    console.log(data)
-                    addStory(data.followerid);
-                },
-                onError:(error)=>{
-                    return error;
-                }
+        const {data, isSuccess,isLoading, isError} = useQuery({
+            queryKey: ["story"],
+            queryFn: async ()=>{
+            if(userInfo){
+                const response = await getStory(userInfo?.userid)
+                return response;
             }
-        )
+            }
+            
+})
         return {data, isSuccess, isLoading,isError}
 }
 export default useStoryQuery;

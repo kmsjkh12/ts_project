@@ -4,24 +4,25 @@ import React,{useState} from 'react'
 import "./login.css"
 import useUserLoginQuery from '@/store/user/userApi'
 import { useEffect } from 'react'
+import {useRouter} from 'next/navigation'
 const Login  =() =>{
     const [emailCheck, setEmailCheck] = useState(false);
     const [passwordCheck, setPasswordCheck] = useState(false);
-    
+    const router = useRouter();
+
     useEffect(()=>{
       console.log(emailCheck)
       console.log(passwordCheck)
     },[emailCheck, passwordCheck])
 
 
-    const { handleLogin, data, error, isError } = useUserLoginQuery();
+    const { handleLogin, data, error, isError ,isSuccess} = useUserLoginQuery();
 
     const [ form, setForm ] = useState({
       useremail: '',
         password: ''
     })
-    
-  
+
     const { useremail , password } = form;
 
     const onChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +44,6 @@ const Login  =() =>{
             setPasswordCheck(false)
         }
         }
-
         setForm({
             ...form,
             [name]: value
@@ -52,14 +52,13 @@ const Login  =() =>{
 
     const handleSubmit =async  (e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
-       
         if(!emailCheck  && !passwordCheck){
           await handleLogin(useremail,password);
         }
         setForm({
           useremail:'',
             password:'',
-        })
+        })        
     }
 
     if(error){
@@ -69,9 +68,10 @@ const Login  =() =>{
         </div>
       )
     }
+
     if (isError) {
-  return <div>Error occurred: error</div>;
-}
+      return <div>Error occurred: error</div>;
+    }
     
     return(
         <div className="container">

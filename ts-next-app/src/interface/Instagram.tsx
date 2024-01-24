@@ -1,30 +1,3 @@
-export interface User{                   
-    userid:number,      
-    user_name: string,             // 유저 번호
-    user_image : string | null,      // 프로필 사진
-    place : string | null            // 장소
-    contents : Array<Content> |null  // 게시글 array
-    follow : Array<User> | null      // 팔로우한 유저 array
-}   
-
-export interface Content {
-    content_id: number ;      //게시글 번호
-    content_image: string | null;   //게시글 이미지
-    content: string | null;         //게시글 내용  
-    like: Array<User> | null;       //게시글 좋아요 user array
-    comment: Array<Comment> | null;        //게시글 댓글 array
-    user: User;           //유저id
-}
-
-export interface Comment {
-    comment_id: number ,      //댓글 번호
-    content_id : number,
-    comment_content: string | null, //댓글 내용
-    like: Array<User> | null,       //댓글 좋아요 
-    user: User,           //유저 id
-}
-
-
 export interface LoginProps {
     usernickname :string,
     place :string,
@@ -33,13 +6,70 @@ export interface LoginProps {
     accessToken :string,
 } 
 
-
-
 export interface LoginData {
     useremail : string,
     password : string
 } 
 
+export interface UserData{
+    userid: number,
+    usernickname: string,   
+    useremail: string,
+    plage:string,
+    userimage: string,
+}
 
 
+export interface PostUserData{
+    userid:number;
+}
 
+followid
+: 
+1
+place
+: 
+"kmsjkh12@naver.com"
+
+export interface FollowerList{
+    follower: Array<Follower>
+}
+
+export interface Follower{
+    userid:number,
+    followid:number,
+    useremail:string,
+    userimage:string,
+    usernickname:string,
+    place:string,
+}
+
+export interface ContentList{
+    content: Array<Content>
+}
+
+export interface Content{
+    postid:number,
+    content:string,
+    comment:CommentList,
+    image:string,
+    user: UserData
+}
+
+
+export interface CommentList{
+    comment : Array<Comment>
+}
+
+export interface Comment{
+    commentid:number,
+    content:string,
+    feedReplyDtoList: [],
+    nickname:string,
+    profile_image:string
+}
+
+export interface CreateComment{
+    content:string,
+    postid:number,
+}

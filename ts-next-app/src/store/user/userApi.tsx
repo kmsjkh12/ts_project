@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { loginUser } from './user';
 import { Cookies } from 'react-cookie';
@@ -9,10 +9,9 @@ const useUserLoginQuery = () => {
 
     const cookies = new Cookies();
 
-    const { mutate, data, error, isError } = useMutation(loginUser, {
+    const {  mutate, data, error, isError, isSuccess } = useMutation({mutationFn : loginUser, 
+       
       onSuccess: (data) => {
-          console.log("hllo" +data)
-
       loginSuccess({
         'usernickname': data.usernickname,
         "useremail": data.useremail,
@@ -20,24 +19,26 @@ const useUserLoginQuery = () => {
         "place" : data.place,
         "userid": data.userid
       })
+      
       cookies.set("Authorization", data.accessToken)
     },
+    onError : (error) =>{
+      console.log(error);
+    }
   });
 
   const handleLogin = async (useremail:string, password : string) => {
-    console.log('Handling login');
     try {
       await mutate({
         useremail: useremail,
         password: password,
       });
     } catch (error) {
-      // Handle error if needed
-    }
-    console.log('Login handling complete');
+        console.log("error " + error)
+      }
   };
 
-  return { handleLogin, data, error, isError };
+  return { handleLogin, data, error, isError ,isSuccess};
 };
 
 export default useUserLoginQuery;
